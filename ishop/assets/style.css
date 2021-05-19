@@ -1,0 +1,29 @@
+.table {
+    width: 100%;
+    max-width: 968px;
+    margin: 20px auto 0;
+}
+
+.shop {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shop .product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 50%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 0;
+}
+
+.shop .product .product_name {
+    margin-top: 8px;
+}
+
+.shop .product .product_img {
+    width: 100%;
+}
