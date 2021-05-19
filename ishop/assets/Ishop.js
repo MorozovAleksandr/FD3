@@ -22,7 +22,7 @@ const Nike = React.createClass({
     displayName: 'Nike',
 
     render() {
-        const product = products.map((item) => {
+        const product = this.props.products.map((item) => {
             const { id, name, price, urlImg, count } = item;
             return (
                 React.DOM.td({ key: id, className: `product` },
