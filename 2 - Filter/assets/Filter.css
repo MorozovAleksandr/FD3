@@ -1,0 +1,16 @@
+.container {
+    width: 320px;
+}
+
+.col {
+    display: flex;
+    align-items: center;
+}
+
+.col input {
+    margin: 0 5px;
+}
+
+.container select {
+    width: 100%;
+}
