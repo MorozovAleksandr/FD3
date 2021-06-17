@@ -5,6 +5,7 @@ const words = [
     { text: 'Скорость', code: 4 },
     { text: 'Прыжок', code: 5 },
     { text: 'Упор', code: 6 },
+    { text: 'Плачь', code: 7 },
 ];
 
 const Filter = React.createClass({
@@ -12,7 +13,8 @@ const Filter = React.createClass({
 
     getInitialState: function () {
         return {
-            words: this.props.words,
+            originalWords: this.props.words,
+            searchWords: null,
             term: '',
             statusAlphabetFilter: false,
         };
@@ -42,25 +44,32 @@ const Filter = React.createClass({
 
     onSearchChange(e) {
         const term = e.target.value;
-        this.setState({ term });
+        this.setState({
+            term: term,
+            searchWords: this.search(this.state.originalWords, term),
+        });
     },
 
-    onStatusAlphabeChange() {
+    onStatusAlphabeChange(currentWords) {
         const status = !this.state.statusAlphabetFilter;
-        this.setState({ statusAlphabetFilter: status });
+        this.setState({
+            statusAlphabetFilter: status,
+            searchWords: status ? this.alphabetFilter(currentWords, status) : this.search(this.state.originalWords, this.state.term),
+        });
     },
 
     resetFilters() {
         this.setState({
             statusAlphabetFilter: false,
+            searchWords: null,
             term: '',
         });
     },
 
     render() {
-        const visibleWords = this.search(this.state.words, this.state.term);
-        const visibleAlphabetFilterWords = this.alphabetFilter(visibleWords, this.state.statusAlphabetFilter);
-        const words = visibleAlphabetFilterWords.map((item) => {
+        let currentWords = this.state.searchWords ? [...this.state.searchWords] : [...this.state.originalWords];
+
+        const words = currentWords.map((item) => {
             const { text, code } = item;
             return (
                 React.DOM.option({ key: code }, text)
@@ -70,7 +79,7 @@ const Filter = React.createClass({
         return (
             React.DOM.div({ className: 'container mt-4' },
                 React.DOM.div({ className: 'col' },
-                    React.DOM.input({ className: 'form-check-input me-1', type: 'checkbox', onChange: this.onStatusAlphabeChange, checked: this.state.statusAlphabetFilter }),
+                    React.DOM.input({ className: 'form-check-input me-1', type: 'checkbox', onChange: () => { this.onStatusAlphabeChange(currentWords) }, checked: this.state.statusAlphabetFilter }),
                     React.DOM.input({ type: 'text', onChange: this.onSearchChange, value: this.state.term }),
                     React.DOM.input({ className: 'btn btn-primary', type: 'button', onClick: this.resetFilters, value: 'сброс' })
                 ),
