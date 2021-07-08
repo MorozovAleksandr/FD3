@@ -33,3 +33,7 @@
 .activeTrue {
     background-color: #ffc107 !important;
 }
+
+.btn {
+    width: 100%;
+}
