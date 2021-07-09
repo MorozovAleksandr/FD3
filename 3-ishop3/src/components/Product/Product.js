@@ -7,12 +7,16 @@ class Product extends React.Component {
 
     onDelete = (e) => {
         e.stopPropagation();
-        const answer = window.confirm('Вы уверены, что хотите удалить?') ? this.props.cbOnDelete(this.props.id) : null;
+        if (!this.props.createOrEditStatus) {
+            const answer = window.confirm('Вы уверены, что хотите удалить?') ? this.props.cbOnDelete(this.props.id) : null;
+        }
     }
 
     onEdit = (e) => {
         e.stopPropagation();
-        this.props.cbOnEdit(this.props.id);
+        if (this.props.onSaveStatus && this.props.workMode !== 1) {
+            this.props.cbOnEdit(this.props.id);
+        }
     }
 
     render() {

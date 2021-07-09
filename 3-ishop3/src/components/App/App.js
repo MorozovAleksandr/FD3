@@ -16,7 +16,8 @@ class App extends React.Component {
             createOrEditCard: {
                 createOrEditStatus: false,
                 editCardId: null,
-                workMode: null
+                workMode: null,
+                onSaveStatus: true
             }
         }
     }
@@ -33,21 +34,24 @@ class App extends React.Component {
     }
 
     onClickProduct = (id) => {
-        this.setState(({ products }) => {
-            const currentProducts = [...products];
-            currentProducts.forEach(item => item.activeStatus = false);
-            const idx = currentProducts.findIndex(el => el.id === id);
-            const oldItem = currentProducts[idx];
-            const updateItem = { ...oldItem, activeStatus: true }
-            const before = currentProducts.slice(0, idx);
-            const after = currentProducts.slice(idx + 1);
-            const updateProducts = [...before, updateItem, ...after];
+        if (this.state.createOrEditCard.onSaveStatus && this.state.createOrEditCard.workMode !== 1) {
+            this.setState(({ products, createOrEditCard }) => {
+                const currentProducts = [...products];
+                currentProducts.forEach(item => item.activeStatus = false);
+                const idx = currentProducts.findIndex(el => el.id === id);
+                const oldItem = currentProducts[idx];
+                const updateItem = { ...oldItem, activeStatus: true }
+                const before = currentProducts.slice(0, idx);
+                const after = currentProducts.slice(idx + 1);
+                const updateProducts = [...before, updateItem, ...after];
 
-            return {
-                products: updateProducts,
-                activeCardId: id
-            }
-        })
+                return {
+                    products: updateProducts,
+                    activeCardId: id,
+                    createOrEditCard: { ...createOrEditCard, createOrEditStatus: false }
+                }
+            })
+        }
     }
 
     onDelete = (id) => {
@@ -71,12 +75,17 @@ class App extends React.Component {
     }
 
     onEdit = (id) => {
-        this.setState(({ createOrEditCard }) => {
+        this.setState(({ createOrEditCard, activeCardId, products }) => {
+            const currentProducts = [...products];
+            currentProducts.forEach(item => item.activeStatus = false);
             return {
+                activeCardId: null,
+                products: currentProducts,
                 createOrEditCard: {
                     createOrEditStatus: true,
                     editCardId: id,
-                    workMode: 2
+                    workMode: 2,
+                    onSaveStatus: true
                 }
             }
         })
@@ -91,7 +100,6 @@ class App extends React.Component {
                     newProduct.push(product[prop])
                 }
                 updateProducts = [...products, this.createProduct(...newProduct)];
-
             } else {
                 const idx = products.findIndex(el => el.id === product.id);
                 const before = products.slice(0, idx);
@@ -102,7 +110,9 @@ class App extends React.Component {
                 products: updateProducts,
                 createOrEditCard: {
                     createOrEditStatus: false,
-                    editCardId: null
+                    editCardId: null,
+                    workMode: null,
+                    onSaveStatus: true
                 }
             }
         })
@@ -114,20 +124,35 @@ class App extends React.Component {
             return {
                 createOrEditCard: {
                     createOrEditStatus: false,
-                    editCardId: null
+                    editCardId: null,
+                    workMode: null,
+                    onSaveStatus: true
                 }
             }
         })
     }
 
     onNewProduct = () => {
-        this.setState(() => {
+        this.setState(({ products }) => {
+            const currentProducts = [...products];
+            currentProducts.forEach(item => item.activeStatus = false);
             return {
+                activeCardId: null,
+                products: currentProducts,
                 createOrEditCard: {
                     createOrEditStatus: true,
                     editCardId: null,
-                    workMode: 1
+                    workMode: 1,
+                    onSaveStatus: true
                 }
+            }
+        })
+    }
+
+    onSaveStatusUpdate = (status) => {
+        this.setState(({ createOrEditCard }) => {
+            return {
+                createOrEditCard: { ...createOrEditCard, onSaveStatus: status }
             }
         })
     }
@@ -136,7 +161,7 @@ class App extends React.Component {
         const product = this.state.products.map((item) => {
             const { id, ...itemProps } = item;
             return (
-                <Product key={id} cbOnClickProduct={this.onClickProduct} cbOnDelete={this.onDelete} cbOnEdit={this.onEdit} {...itemProps} id={id} />
+                <Product key={id} workMode={this.state.createOrEditCard.workMode} onSaveStatus={this.state.createOrEditCard.onSaveStatus} createOrEditStatus={this.state.createOrEditCard.createOrEditStatus} cbOnClickProduct={this.onClickProduct} cbOnDelete={this.onDelete} cbOnEdit={this.onEdit} {...itemProps} id={id} />
             );
         });
 
@@ -149,7 +174,10 @@ class App extends React.Component {
                         </tr>
                     </tbody>
                 </table>
-                <input type="button" onClick={this.onNewProduct} value="Новый продукт" />
+                {
+                    (!this.state.createOrEditCard.createOrEditStatus) &&
+                    <input type="button" onClick={this.onNewProduct} value="Новый продукт" />
+                }
                 {
                     (this.state.activeCardId) &&
                     <ActiveProductCard activeProduct={this.state.products.find(item => item.id === this.state.activeCardId)} />
@@ -157,7 +185,7 @@ class App extends React.Component {
 
                 {
                     (this.state.createOrEditCard.createOrEditStatus) &&
-                    <CreateOrEditProductCard cbOnCancel={this.onCancel} workMode={this.state.createOrEditCard.workMode} cbOnSave={this.onSave} editProduct={this.state.products.find(item => item.id === this.state.createOrEditCard.editCardId)} />
+                    <CreateOrEditProductCard validationResultStatus={this.state.createOrEditCard.workMode === 2 ? true : false} cbOnSaveStatusUpdate={this.onSaveStatusUpdate} cbOnCancel={this.onCancel} workMode={this.state.createOrEditCard.workMode} cbOnSave={this.onSave} editProduct={this.state.products.find(item => item.id === this.state.createOrEditCard.editCardId)} />
                 }
 
             </div>
