@@ -1,0 +1,22 @@
+.item__wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.item {
+    display: flex;
+    margin: 5px 0;
+}
+
+.item__title {
+    display: block;
+    width: 120px;
+}
+
+.item__input {
+    margin-right: 10px;
+}
+
+.item_valid {
+    color: brown;
+}

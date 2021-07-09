@@ -166,7 +166,7 @@ class App extends React.Component {
         });
 
         return (
-            <div>
+            <div className="wrapper">
                 <table className="table" >
                     <tbody className="tbody">
                         <tr className="shop">

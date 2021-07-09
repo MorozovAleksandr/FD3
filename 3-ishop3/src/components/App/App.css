@@ -1,6 +1,10 @@
+.wrapper {
+    max-width: 968px;
+    margin: 0 auto;
+}
+
 .table {
     width: 100%;
-    max-width: 968px;
     margin: 20px auto 0;
 }
 
