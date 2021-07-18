@@ -2,7 +2,7 @@ import React from "react";
 import crypto from "crypto";
 import { myEvents } from '../../../event';
 
-class MobileCompanyAddClient extends React.Component {
+class MobileCompanyAddClient extends React.PureComponent {
 
     constructor(props) {
         super(props);
