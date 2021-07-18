@@ -20,8 +20,7 @@ class MobileCompanyAddClient extends React.PureComponent {
             name: this.nameRef.current.value,
             surname: this.surnameRef.current.value,
             patronymic: this.patronymicRef.current.value,
-            balance: +this.balanceRef.current.value,
-            status: +this.statusRef.current.value
+            balance: +this.balanceRef.current.value
         };
 
         myEvents.emit('EaddClient', newClient);
@@ -49,14 +48,6 @@ class MobileCompanyAddClient extends React.PureComponent {
                 <div className="mb-3">
                     <label className="form-label" >Баланс</label>
                     <input type="number" className="form-control" ref={this.balanceRef} />
-                </div>
-
-                <div className="mb-3">
-                    <label className="form-label" >Статус</label>
-                    <select ref={this.statusRef} className="form-select">
-                        <option value="1">Активный</option>
-                        <option value="0">Заблокированный</option>
-                    </select>
                 </div>
                 <button style={{ marginRight: '10px' }} onClick={this.saveEdit} type="submit" className="btn btn-primary">Сохранить</button>
                 <button onClick={this.cancelAddClient} className="btn btn-primary">Отменить</button>

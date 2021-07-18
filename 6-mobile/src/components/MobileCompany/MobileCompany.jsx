@@ -42,10 +42,10 @@ class MobileCompany extends React.PureComponent {
         if (this.state.filterStatus === mode) return; // Если прежний фильтр равен текущему, обновление(рендер) не требуется. 
         let updateProcessedClients = [...this.state.clients];
         if (mode === 1) {
-            updateProcessedClients = updateProcessedClients.filter(item => item.status)
+            updateProcessedClients = updateProcessedClients.filter(item => item.balance >= 0)
         }
         if (mode === 2) {
-            updateProcessedClients = updateProcessedClients.filter(item => !item.status)
+            updateProcessedClients = updateProcessedClients.filter(item => item.balance < 0)
         }
         this.setState({
             processedClients: updateProcessedClients,

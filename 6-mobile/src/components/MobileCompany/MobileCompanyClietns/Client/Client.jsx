@@ -22,7 +22,7 @@ class Client extends React.PureComponent {
                     <td>{this.props.data.balance}</td>
                     <td>
                         {
-                            this.props.data.status ? <span>Активный</span> : <span>Заблокированный</span>
+                            this.props.data.balance >= 0 ? <span>Активный</span> : <span>Заблокированный</span>
                         }
                     </td>
                     <td><button onClick={this.editClient} type="button" className="btn btn-secondary">Редактировать</button></td>

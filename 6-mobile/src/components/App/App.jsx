@@ -7,24 +7,21 @@ const clients = [
         name: 'Вася',
         surname: 'Пупкин',
         patronymic: 'Дмитриевич',
-        balance: 200,
-        status: true
+        balance: 200
     },
     {
         id: 1,
         name: 'Ваня',
         surname: 'Веселюшкин',
         patronymic: 'Александрович',
-        balance: 200,
-        status: true
+        balance: 200
     },
     {
         id: 2,
         name: 'Петя',
         surname: 'Грустняшкин',
         patronymic: 'Андреевич',
-        balance: 200,
-        status: false
+        balance: -200
     }
 ]
 
