@@ -9,34 +9,34 @@ class MobileCompany extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            clients: [...props.clients],
+            clients: [...this.props.clients],
             filterStatus: 0, // 0 - все, 1 - активные - 2 заблокированные
             edit: {
                 status: false,
                 id: null
             },
             addClientStatus: false,
-            processedClients: [...props.clients]
-        }
+            processedClients: [...this.props.clients]
+        };
     }
 
-    componentDidMount = () => {
-        myEvents.addListener('EfilteringClients', this.filteringClients);
-        myEvents.addListener('EdeleteClient', this.deleteClient);
-        myEvents.addListener('EsaveEditClient', this.saveEditClient);
-        myEvents.addListener('EcancelEditingOrAddClient', this.cancelEditingOrAddClient);
-        myEvents.addListener('EeditClient', this.editClient);
-        myEvents.addListener('EaddClient', this.addClient);
-    };
+    componentDidMount() {
+        myEvents.addListener("EfilteringClients", this.filteringClients);
+        myEvents.addListener("EdeleteClient", this.deleteClient);
+        myEvents.addListener("EsaveEditClient", this.saveEditClient);
+        myEvents.addListener("EcancelEditingOrAddClient", this.cancelEditingOrAddClient);
+        myEvents.addListener("EeditClient", this.editClient);
+        myEvents.addListener("EaddClient", this.addClient);
+    }
 
-    componentWillUnmount = () => {
-        myEvents.removeListener('EfilteringClients', this.filteringClients);
-        myEvents.removeListener('EdeleteClient', this.deleteClient);
-        myEvents.removeListener('EsaveEditClient', this.saveEditClient);
-        myEvents.removeListener('EcancelEditingOrAddClient', this.cancelEditingOrAddClient);
-        myEvents.removeListener('EeditClient', this.editClient);
-        myEvents.removeListener('EaddClient', this.addClient);
-    };
+    componentWillUnmount() {
+        myEvents.removeListener("EfilteringClients", this.filteringClients);
+        myEvents.removeListener("EdeleteClient", this.deleteClient);
+        myEvents.removeListener("EsaveEditClient", this.saveEditClient);
+        myEvents.removeListener("EcancelEditingOrAddClient", this.cancelEditingOrAddClient);
+        myEvents.removeListener("EeditClient", this.editClient);
+        myEvents.removeListener("EaddClient", this.addClient);
+    }
 
     filteringClients = (mode) => {
         if (this.state.filterStatus === mode) return; // Если прежний фильтр равен текущему, обновление(рендер) не требуется. 

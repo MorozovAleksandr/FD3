@@ -33,7 +33,7 @@ const clients = [
     }
 ]
 
-test('Проверка фильтро', () => {
+test('Проверка удаления клиента', () => {
 
     // создаём тестовую версию компонента
     const component = mount(
@@ -43,20 +43,8 @@ test('Проверка фильтро', () => {
     // получаем снэпшот (HTML-снимок) компонента для сверки, что вёрстка не испортилась
     expect(toJson(component)).toMatchSnapshot();
 
-    // Ищем кнопку и фильтруем
-    component.find('.fbtn-active').simulate('click');
-
-    // получаем снэпшот (HTML-снимок) компонента для сверки, что вёрстка не испортилась
-    expect(toJson(component)).toMatchSnapshot();
-
-    // Ищем кнопку и фильтруем
-    component.find('.fbtn-all').simulate('click');
-
-    // получаем снэпшот (HTML-снимок) компонента для сверки, что вёрстка не испортилась
-    expect(toJson(component)).toMatchSnapshot();
-
-    // Ищем кнопку и фильтруем
-    component.find('.fbtn-block').simulate('click');
+    // Ищем кнопку и удаляем первого клиента
+    component.find('.btn-delete').at(0).simulate('click');
 
     // получаем снэпшот (HTML-снимок) компонента для сверки, что вёрстка не испортилась
     expect(toJson(component)).toMatchSnapshot();

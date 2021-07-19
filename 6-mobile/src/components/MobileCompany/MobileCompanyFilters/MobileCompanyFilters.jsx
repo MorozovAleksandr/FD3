@@ -11,9 +11,9 @@ class MobileCompanyFilters extends React.PureComponent {
         console.log('render MobileCompanyFilters');
         return (
             <div>
-                <button data-mode={0} onClick={this.onClickFilter} type="button" className="btn btn-secondary btn-space">Все</button>
-                <button data-mode={1} onClick={this.onClickFilter} type="button" className="btn btn-secondary btn-space">Активные</button>
-                <button data-mode={2} onClick={this.onClickFilter} type="button" className="btn btn-secondary btn-space">Заблокированные</button>
+                <button data-mode={0} onClick={this.onClickFilter} type="button" className="btn btn-secondary btn-space fbtn-all">Все</button>
+                <button data-mode={1} onClick={this.onClickFilter} type="button" className="btn btn-secondary btn-space fbtn-active">Активные</button>
+                <button data-mode={2} onClick={this.onClickFilter} type="button" className="btn btn-secondary btn-space fbtn-block">Заблокированные</button>
             </div>
         )
     }

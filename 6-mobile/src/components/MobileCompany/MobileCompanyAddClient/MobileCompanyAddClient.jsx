@@ -35,22 +35,22 @@ class MobileCompanyAddClient extends React.PureComponent {
             <form>
                 <div className="mb-3">
                     <label className="form-label" >Фамилия</label>
-                    <input type="text" className="form-control" ref={this.surnameRef} />
+                    <input type="text" className="form-control surname" id="surname" ref={this.surnameRef} />
                 </div>
                 <div className="mb-3">
                     <label className="form-label" >Имя</label>
-                    <input type="text" className="form-control" ref={this.nameRef} />
+                    <input type="text" className="form-control name" id="name" ref={this.nameRef} />
                 </div>
                 <div className="mb-3">
                     <label className="form-label" >Отчество</label>
-                    <input type="text" className="form-control" ref={this.patronymicRef} />
+                    <input type="text" className="form-control patronymic" id="patronymic" ref={this.patronymicRef} />
                 </div>
                 <div className="mb-3">
                     <label className="form-label" >Баланс</label>
-                    <input type="number" className="form-control" ref={this.balanceRef} />
+                    <input type="number" className="form-control balance" id="balance" ref={this.balanceRef} />
                 </div>
-                <button style={{ marginRight: '10px' }} onClick={this.saveEdit} type="submit" className="btn btn-primary">Сохранить</button>
-                <button onClick={this.cancelAddClient} className="btn btn-primary">Отменить</button>
+                <button style={{ marginRight: '10px' }} onClick={this.saveEdit} type="submit" className="btn btn-primary btn-save">Сохранить</button>
+                <button onClick={this.cancelAddClient} className="btn btn-primary ">Отменить</button>
             </form>
         )
     }

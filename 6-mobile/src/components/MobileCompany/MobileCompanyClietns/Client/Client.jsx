@@ -26,7 +26,7 @@ class Client extends React.PureComponent {
                         }
                     </td>
                     <td><button onClick={this.editClient} type="button" className="btn btn-secondary">Редактировать</button></td>
-                    <td><button onClick={this.deleteClient} type="button" className="btn btn-secondary">Удалить</button></td>
+                    <td><button onClick={this.deleteClient} type="button" className="btn btn-secondary btn-delete">Удалить</button></td>
                 </tr>
             </Fragment>
         )

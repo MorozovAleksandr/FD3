@@ -1,4 +1,5 @@
 import MobileCompany from "../MobileCompany/MobileCompany.jsx";
+
 import "./App.css"
 
 const clients = [
