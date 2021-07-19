@@ -133,7 +133,7 @@ class MobileCompany extends React.PureComponent {
                 {
                     this.state.addClientStatus ?
                         <MobileCompanyAddClient /> :
-                        <button onClick={this.addClientStatusUpdate} type="button" className="btn btn-secondary">Добавить Клиента</button>
+                        <button onClick={this.addClientStatusUpdate} type="button" className="btn btn-secondary btn-add">Добавить Клиента</button>
                 }
 
                 {

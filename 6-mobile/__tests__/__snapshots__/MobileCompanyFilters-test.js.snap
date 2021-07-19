@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Рендер фильтра 1`] = `
+<div>
+  <button
+    className="btn btn-secondary btn-space"
+    data-mode={0}
+    onClick={[Function]}
+    type="button"
+  >
+    Все
+  </button>
+  <button
+    className="btn btn-secondary btn-space"
+    data-mode={1}
+    onClick={[Function]}
+    type="button"
+  >
+    Активные
+  </button>
+  <button
+    className="btn btn-secondary btn-space"
+    data-mode={2}
+    onClick={[Function]}
+    type="button"
+  >
+    Заблокированные
+  </button>
+</div>
+`;
