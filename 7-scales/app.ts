@@ -32,19 +32,19 @@ class Tomato extends Product {
 
 
 class Scale {
-    arrayProducts: Array<Object>;
+    arrayProducts: Array<Product>;
 
     constructor() {
         this.arrayProducts = [];
     }
 
-    add(product: Object): void {
+    add(product: Product): void {
         this.arrayProducts.push(product);
     }
 
     getSumScale(): number {
         let sumScale: number = 0;
-        this.arrayProducts.forEach((item: any) => {
+        this.arrayProducts.forEach((item: Product) => {
             sumScale += item.getScale();
         })
         return sumScale;
@@ -52,7 +52,7 @@ class Scale {
 
     getNameList(): Array<string> {
         let nameList: Array<string> = [];
-        this.arrayProducts.forEach((item: any) => {
+        this.arrayProducts.forEach((item: Product) => {
             nameList.push(item.getName());
         })
         return nameList;

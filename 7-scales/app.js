@@ -64,7 +64,6 @@ var Scale = /** @class */ (function () {
     return Scale;
 }());
 var apple1 = new Apple('Антоновка', 3);
-console.log(apple1);
 var apple2 = new Apple('Белый налив', 2);
 var tomato1 = new Tomato('Чери', 1);
 var scale1 = new Scale();
