@@ -78,8 +78,8 @@ class ScalesStorageEngineLocalStorage {
 }
 
 class Product {
-    name: string;
-    scale: number;
+    private name: string;
+    private scale: number;
 
     constructor(_name: string, _scale: number) {
         this.name = _name;
