@@ -62,19 +62,19 @@ class Tomato implements IScalable {
 
 
 class Scale {
-    arrayProducts: Array<Product>;
+    arrayProducts: Array<IScalable>;
 
     constructor() {
         this.arrayProducts = [];
     }
 
-    add(product: Product): void {
+    add(product: IScalable): void {
         this.arrayProducts.push(product);
     }
 
     getSumScale(): number {
         let sumScale: number = 0;
-        this.arrayProducts.forEach((item: Product) => {
+        this.arrayProducts.forEach((item: IScalable) => {
             sumScale += item.getScale();
         })
         return sumScale;
@@ -82,7 +82,7 @@ class Scale {
 
     getNameList(): Array<string> {
         let nameList: Array<string> = [];
-        this.arrayProducts.forEach((item: Product) => {
+        this.arrayProducts.forEach((item: IScalable) => {
             nameList.push(item.getName());
         })
         return nameList;
